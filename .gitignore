@@ -1,0 +1,13 @@
+result
+result-*
+.#*
+*.swp
+*.swo
+*~
+.DS_Store
+node_modules/
+dist/
+.env
+.env.local
+.pi/
+.direnv
