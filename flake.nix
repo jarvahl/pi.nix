@@ -1,29 +1,32 @@
+# DO-NOT-EDIT. This file was auto-generated using github:denful/flake-file.
+# Use `nix run .#write-flake` to regenerate it.
 {
-  outputs =
-    { flakelight, ... }@inputs:
-    flakelight ./. (
-      { lib, ... }:
-      {
-        inherit inputs;
-
-        nixDir = ./.;
-        pname = "pi-coding-agent";
-        systems = lib.systems.flakeExposed;
-
-        flakelight.builtinFormatters = false;
-        flakelight.editorconfig = false;
-        outputs.checks = lib.mkForce { };
-      }
-    );
+  outputs = inputs: import ./outputs.nix inputs;
 
   inputs = {
-    flakelight = {
-      url = "github:nix-community/flakelight";
+    flake-file = {
+      url = "github:denful/flake-file";
+    };
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+    git-hooks-nix = {
+      url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
-    wrappers = {
-      url = "github:Lassulus/wrappers";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    import-tree = {
+      url = "github:denful/import-tree";
+    };
+    nixpkgs = {
+      url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
+    };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
